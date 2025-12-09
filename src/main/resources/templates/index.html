@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Article</title>
 </head>
 <body>
 
+<div>****************************************************</div>
+<h2>Ma liste d'Article est :</h2>
+<div th:each="a:${listArticle}">
+    <p>***********************************************</p>
+    <div style="background-color: pink;">
+        <p>Id du article:<span th:text="${a.id}"></span></p>
+        <p>le titre de l'article:<span th:text="${a.titre}"></span></p>
+        <p>l'auteur de l'article:<span th:text="${a.auteur}"></span></p>
+        <a th:href="@{/detail/{id}(id=${a.id})}"> Details du article</a>
+    </div>
+</div>
 </body>
 </html>
