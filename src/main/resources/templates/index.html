@@ -7,9 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
-
+<div>
 <h2>Mon blog</h2>
-
+</div>
 <div th:each="a:${listArticle}">
     <div>
         <p>L'article n°: <span th:text="${a.id}"></span></p>
@@ -17,11 +17,12 @@
         <p>l'auteur : <span th:text="${a.auteur}"></span></p>
         <p>le contenu : <span th:text="${a.contenu}"></span></p>
         <a th:href="@{/detail/{id}(id=${a.id})}">lire l'article</a>
+        <a th:href="@{/detail/{id}(id=${a.id})}">supprimer l'article</a>
+
     </div>
 </div>
 <div>
-    <p>pour créer un nouveau article</p><br>
-    <a href="/nouveau"><button>New</button></a>
+    <a href="/nouveau">Créer un nouveau article</a>
 </div>
 </body>
 </html>

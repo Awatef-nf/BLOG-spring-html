@@ -28,7 +28,7 @@ public class ArticleController {
     public String getForm(Model model)
     {  //on ceer un objet vide pour que cet objet reçoie les données du formulaire
         model.addAttribute("article", new Article());
-        return "form";
+        return "formulaire";
     }
 
     @GetMapping("/detail/{id}")
