@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ArticleController {
@@ -25,31 +26,52 @@ public class ArticleController {
     }
 
     @GetMapping("/nouveau")
-    public String getForm(Model model)
-    {  //on ceer un objet vide pour que cet objet reçoie les données du formulaire
+    public String getForm(Model model) {  //on ceer un objet vide pour que cet objet reçoie les données du formulaire
         model.addAttribute("article", new Article());
         return "formulaire";
     }
 
     @GetMapping("/detail/{id}")
-    public  String getDetail(Model model, @PathVariable Long id)
-    {
-        model.addAttribute("article",articleService.getArticleByID(id));
+    public String getDetail(Model model, @PathVariable Long id) {
+        model.addAttribute("article", articleService.getArticleByID(id));
         return "detail";
     }
 
-   @PostMapping("/nouveau")
-    public String addArcticle(@ModelAttribute Article article, Model model)
-    {
-    articleService.createANewArticale(article);
-     return "redirect:/";
+    @PostMapping("/nouveau")
+    public String addArcticle(@ModelAttribute Article article, Model model) {
+        articleService.createANewArticale(article);
+        return "redirect:/";
     }
 
-    @GetMapping("/{author}")
-    public String getArticleByAuthor(@PathVariable String author,Model model) {
-        model.addAttribute("listArticle",articleService.getArticleByAuthor(author));
+    @GetMapping("/recherche")
+    public String getArticleByAuthor(String auteur, Model model) {
+        model.addAttribute("listArticle", articleService.getArticleByAuthor(auteur));
         return "auteur";
     }
 
+
+    @GetMapping("/{id}/modifier")
+    public String modifier(@PathVariable Long id, Model model) {
+        Article article = articleService.getArticleByID(id);
+        if (article != null) {
+            model.addAttribute("article", article);
+            return "formulaire";
+        }
+        return "redirect:/";
+
+    }
+
+    @PostMapping("/{id}/modifier")
+    public String modifierArticle(@ModelAttribute Article article) {
+        articleService.modifyArticle(article);
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/{id}/delete")
+    public String deleteArticle(@PathVariable Long id) {
+        articleService.deleteArticle(id);
+        return "redirect:/";
+    }
 
 }

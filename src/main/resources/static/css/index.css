@@ -1,0 +1,182 @@
+/* ================= BASE ================= */
+body {
+
+       background-image: url("/image/istockphoto-1263424631-612x612.jpg") !important;
+       background-repeat: no-repeat;
+       background-size: cover;
+       background-position: center;
+}
+
+/* ================= LIENS ================= */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/* ================= BOUTONS ================= */
+button {
+    background-color: #d2a37c;
+    color: black;
+    border: none;
+    padding: 3px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #1e40af;
+}
+
+/* ================= FORMULAIRE ================= */
+
+.article-form {
+    max-width: 700px;
+    margin: 60px auto;
+    background: #ebb3a8;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.article-form h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #1f2937;
+}
+
+/* Grille */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 25px;
+}
+
+/* Groupes */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Labels */
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+/* Inputs & textarea */
+.form-group input,
+.form-group textarea {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+/* Placeholder */
+::placeholder {
+    color: #9ca3af;
+}
+
+/* Textarea */
+.form-group textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+/* Focus */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+}
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body {
+        padding: 15px;
+    }
+}
+
+/* ================= LISTE & DETAIL ARTICLES ================= */
+
+.article-list,
+.article-detail {
+    max-width: 800px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Titres */
+.article-list h1,
+.article-detail h1 {
+    margin-bottom: 15px;
+    color: #1f2937;
+}
+
+/* Cartes */
+.article-card {
+    padding: 20px;
+    border-radius: 10px;
+    background: #f9fafb;
+    margin-bottom: 20px;
+}
+
+.article-card h2 {
+    margin-bottom: 8px;
+}
+
+/* Auteur */
+.article-auteur {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 15px;
+}
+
+/* Contenu */
+.article-contenu p {
+    line-height: 1.8;
+}
+
+/* liste article*/
+.article-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    font-size: 15px;
+}
+
+.article-table th {
+    text-align: left;
+    padding: 14px;
+    border-bottom: 2px solid;
+}
+
+.article-table td {
+    padding: 14px;
+    border-bottom: 1px solid;
+}
+
+.article-table button {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+.article-table td:nth-child(3) {
+    color: #6b7280;
+    font-size: 14px;
+}

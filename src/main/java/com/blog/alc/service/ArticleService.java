@@ -42,12 +42,11 @@ import java.util.List;
         articleRepository.save(article);
     }
 
-    public void modifyArticale(Article update) {
-        getArticleByID(update.getId());
+    public void modifyArticle(Article update) {
         articleRepository.save(update);
     }
 
-    public void deleteArticale(Long id) {
+    public void deleteArticle(Long id) {
         articleRepository.deleteById(id);
     }
 

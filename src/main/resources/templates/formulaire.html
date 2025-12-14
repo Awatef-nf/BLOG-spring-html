@@ -2,23 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire</title>
+    <title>Formulaire Article</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 
-<div>
-<form th:action="@{/nouveau}" th:object="${article}" method="post">
-<!--           adress de l'action    type d objet    la maniere de la methode -->
-    <label for="titre">Titre : </label>
-    <input type="text"th:field="*{titre}" id="titre"><br>
-    <label for="auteur">auteur : </label>
-    <input type="text"th:field="*{auteur}" id="auteur" ><br>
-    <label for="contenu">contenu : </label>
-    <input type="text"th:field="*{contenu}" id="contenu" ><br>
-    <a th:href="@{/}"><button type="submit">Envoyer</button></a>
+<form th:action="${article.id == null ? '/nouveau' : '/' + article.id + '/modifier'}"
+      th:object="${article}"
+      method="post"
+      class="article-form">
 
+    <h2 th:text="${article.id == null ? 'Créer un article' : 'Modifier l’article'}"></h2>
+
+    <div class="form-grid">
+
+        <!-- TITRE -->
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text"
+                   th:field="*{titre}"
+                   id="titre"
+                   placeholder="Titre de l’article"
+                   required>
+        </div>
+
+        <!-- AUTEUR -->
+        <div class="form-group">
+            <label for="auteur">Auteur</label>
+            <input type="text"
+                   th:field="*{auteur}"
+                   id="auteur"
+                   placeholder="Nom de l’auteur"
+                   required>
+        </div>
+
+        <!-- CONTENU -->
+        <div class="form-group full-width">
+            <label for="contenu">Contenu</label>
+            <textarea th:field="*{contenu}"
+                      id="contenu"
+                      placeholder="Écris le contenu de l’article ici..."
+                      required></textarea>
+        </div>
+
+        <!-- ACTIONS -->
+        <div>
+            <button type="submit">Enregistrer</button>
+            <a href="/"><button>Annuler</button></a>
+        </div>
+
+    </div>
 </form>
-</div>
 
 </body>
 </html>

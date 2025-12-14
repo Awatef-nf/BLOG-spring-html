@@ -5,24 +5,72 @@
     <meta charset="UTF-8">
     <title>Article</title>
     <link rel="stylesheet" th:href="@{/css/index.css}">
-</head>
-<body>
-<div>
-<h2>Mon blog</h2>
-</div>
-<div th:each="a:${listArticle}">
-    <div>
-        <p>L'article n°: <span th:text="${a.id}"></span></p>
-        <p>le titre : <span th:text="${a.titre}"></span></p>
-        <p>l'auteur : <span th:text="${a.auteur}"></span></p>
-        <p>le contenu : <span th:text="${a.contenu}"></span></p>
-        <a th:href="@{/detail/{id}(id=${a.id})}">lire l'article</a>
-        <a th:href="@{/detail/{id}(id=${a.id})}">supprimer l'article</a>
 
+</head>
+<body th:style="'background-image:url(@{kindpng_3949451.png})'">
+<header>
+    <div class="article-form">
+    <div><h1 id="monblog">Mon blog</h1></div>
+    <div>
+        <div><a class="lien" href="/nouveau">Créer un article</a></div>
+        <div>
+            <form th:action="@{/recherche}" method="get">
+            <label for="auteur">Chercher un article : </label>
+                <input type="text" name="auteur" id="auteur" placeholder="Auteur">
+            <button type="submit">Chercher</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</header>
+
+<div class="article-form">
+    <div>
+        <div><h1 id="Les articles disponibles">Les articles disponibles</h1></div>
+        <div>
+        <table class="article-table" th:if="${!listArticle.isEmpty()}">
+        <tr>
+        <div><th>Titre</th></div>
+        <div><th>Auteur</th></div>
+        <div><th>Date</th></div>
+        <div><th>Actions</th></div>
+        </tr>
+        <tr th:each="article : ${listArticle}">
+            <td><a th:href="@{/detail/{id}(id=${article.id})}" th:text="${article.titre}"></a></td>
+            <td th:text="${article.auteur}"></td>
+            <td th:text="${article.dateCreation}"></td>
+            <td>
+                <a th:href="@{/{id}/modifier(id=${article.id})}"><button>Modifier</button></a>
+                <a th:href="@{/{id}/delete(id=${article.id})}"><button>Supprimer</button></a>
+            </td>
+            <td><a href="/?sort=titre">
+                <button>Trier par titre</button>
+            </a></td>
+
+                <td><a href="/?sort=auteur">
+                    <button>Trier par auteur</button>
+                </a></td>
+        </tr>
+        </table>
+
+        </div>
     </div>
 </div>
-<div>
-    <a href="/nouveau">Créer un nouveau article</a>
-</div>
+
 </body>
 </html>
+
+
+
+
+<!--<div th:each="a:${listArticle}">-->
+<!--    <div class="field">-->
+<!--            <p>Titre : <span th:text="${a.titre}"></span></p></div>-->
+<!--        <div>-->
+<!--            <p>Auteur : <span th:text="${a.auteur}"></span></p></div>-->
+<!--        <div>-->
+<!--            <p>Contenu : <span th:text="${a.contenu}"></span></p></div>-->
+<!--        <div><a th:href="@{/detail/{id}(id=${a.id})}"><button>lire</button></a><br></div>-->
+<!--        <div><a th:href="@{/{id}/modifier(id=${a.id})}"><button>Modifier</button></a></div>-->
+<!--        <div><a th:href="@{/{id}/delete(id=${a.id})}"><button>Supprimer</button></a></div>-->
+<!--    </div>-->

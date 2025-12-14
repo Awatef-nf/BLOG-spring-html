@@ -2,19 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Articles par auteur</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
-<div th:each="a:${listArticle}">
-    <div>
-        <p>L'article n°: <span th:text="${a.id}"> </span></p>
-        <p>le titre :<span th:text="${a.titre}"></span></p>
-        <p>le contenu : <span th:text="${a.contenu}"></span></p><br><br>
+
+<div class="article-list">
+
+    <h1>
+        Articles de
+        <span th:text="${auteur}"></span>
+    </h1>
+
+    <div th:if="${listArticle.isEmpty()}">
+        <p>Aucun article trouvé.</p>
     </div>
+
+    <div th:each="article : ${listArticle}" class="article-card">
+        <h2>
+            <a th:href="@{/detail/{id}(id=${article.id})}"
+               th:text="${article.titre}"></a>
+        </h2>
+
+        <p class="article-auteur">
+            Auteur :
+            <span th:text="${article.auteur}"></span>
+        </p>
+
+        <div class="article-actions">
+            <a th:href="@{/detail/{id}(id=${article.id})}">
+                <button>Lire</button>
+            </a>
+        </div>
+    </div>
+
 </div>
-<div>
-    <a href="/"><button>Mon blog</button></a>
-    <a href="/nouveau"><button>New</button></a>
-</div>
+
 </body>
 </html>

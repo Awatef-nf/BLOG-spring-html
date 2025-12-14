@@ -1,19 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Détails</title>
+    <title>Détail article</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
-<div>
-    <p th:text="${article.titre}"></p>
+
+<div class="article-detail">
+
+    <h1 th:text="${article.titre}"></h1>
+
+    <p class="article-auteur">
+        Auteur :
+        <span th:text="${article.auteur}"></span>
+    </p>
+
+    <div class="article-contenu">
+        <p th:text="${article.contenu}"></p>
+    </div>
+
+    <div>
+        <a href="/"><button>Retour</button></a>
+        <a th:href="@{/{id}/modifier(id=${article.id})}">
+            <button>Modifier</button>
+        </a>
+        <a th:href="@{/{id}/delete(id=${article.id})}">
+            <button>Supprimer</button>
+        </a>
+    </div>
+
 </div>
-<div>
-    <p th:text="${article.contenu}"></p>
-</div>
-<div>
-     <a href="/nouveau">Créer un nouveau article</a>
-</div>
+
 </body>
 </html>
